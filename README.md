@@ -22,3 +22,43 @@ This repository contains all the notebooks and scripts used to complete the fina
 **Programming languages used**: Python
 
 **Technical skills acquired**: Classification methods (SciPy, Scikit-Learn), Deep Neural Networks (Keras, PyTorch, Tensorflow), Image Classification and Object Detection (Pillow, OpenCV), AI model deployment (IBM Watson Studio), GPU computing (Google Colab)
+
+
+## Executive summary
+
+Crack detection has vital importance for structural health monitoring and inspection.
+In this project, I built a classifier using a pre-trained model that would detect cracks in images of concrete (see Figure 1).
+While it is possible to deep learning models by using neural networks with many hidden layers, training them is computationally very expensive.
+Even with pre-trained models, GPU computing is very strongly recommended. I achieved this using Google Colab.
+Using pre-trained models both with PyTorch and Keras, a classification accuracy of more than 99% was achieved.
+
+![image](https://github.com/mnirkko/deeplearning/assets/6942556/4df2c4ff-7564-4d7c-a431-c9325dd85509)
+
+**Figure 1** -- Images of concrete from validation dataset. Left: without cracks (negative). Right: with cracks (positive).
+
+## Methodology
+
+The data is labeled as Positive (1) for images of concrete containing cracks, and Negative (0) when no cracks are visible.
+Images are resized to 224x224 pixels.
+
+* In PyTorch, the dataset consisted of 40'000 images, consisting of 30'000 training samples and 10'000 validation samples.
+* In Keras, the dataset also consisted of 40'000 images, consisting of 30'000 training samples, 9'500 validation samples and 500 test samples.
+
+![image](https://github.com/mnirkko/deeplearning/assets/6942556/d9d933cc-0057-48af-aba7-7f0dc3357d1c)
+
+**Figure 2** -- Loss function of pre-trained ResNet18 model used in PyTorch. Cross-entropy loss was used as criterion. 
+
+![image](https://github.com/mnirkko/deeplearning/assets/6942556/f788018f-8843-4022-b006-07f09fa2e514)
+
+**Figure 3** -- Summary of pre-trained models used in Keras. Left: ResNet50 model. Right: VGG16 model. A Dense layer was added sequentially to reduce the output parameters to 2, corresponding to a binary classification. 
+
+
+## Results
+
+The following results were obtained:
+* Using the **ResNet18** model in PyTorch, the achieved accuracy  was **99.4%**.
+* Using the **VGG16** model in Keras, the achieved accuracy  was **99.8%**.
+* Using the **ResNet50** model in Keras, the achieved accuracy  was **100%**.
+
+Given the relatively simple nature of the problem (a crack should be clearly visible in a close-up image of concrete), the trained models performed very well on the validation datasets.
+Thus, the predictions on the test images were also found to be accurate.
