@@ -27,10 +27,11 @@ This repository contains all the notebooks and scripts used to complete the fina
 ## Executive summary
 
 Crack detection has vital importance for structural health monitoring and inspection.
-In this project, I built a classifier using a pre-trained model that would detect cracks in images of concrete (see Figure 1).
-While it is possible to deep learning models by using neural networks with many hidden layers, training them is computationally very expensive.
-Even with pre-trained models, GPU computing is very strongly recommended. I achieved this using Google Colab.
-Using pre-trained models both with PyTorch and Keras, a classification accuracy of more than 99% was achieved.
+In this project, I built deep learning models to obtain a classifier for detecting cracks in images of concrete (see Figure 1).
+This was done using the PyTorch and Keras modules in Python.
+While it is relatively straightforward to write neural networks with many hidden layers, training them is computationally very expensive.
+The process can be sped up significantly with GPU computing.
+Using various pre-trained models both with PyTorch and Keras, a classification accuracy of more than 99% was achieved.
 
 ![image](https://github.com/mnirkko/deeplearning/assets/6942556/4df2c4ff-7564-4d7c-a431-c9325dd85509)
 
@@ -38,20 +39,34 @@ Using pre-trained models both with PyTorch and Keras, a classification accuracy 
 
 ## Methodology
 
+A dataset of 40'000 images of concrete was provided by the course.
 The data is labeled as Positive (1) for images of concrete containing cracks, and Negative (0) when no cracks are visible.
-Images are resized to 224x224 pixels.
+Images are resized to 224x224 pixels to input them into the pre-trained models.
 
-* In PyTorch, the dataset consisted of 40'000 images, consisting of 30'000 training samples and 10'000 validation samples.
-* In Keras, the dataset also consisted of 40'000 images, consisting of 30'000 training samples, 9'500 validation samples and 500 test samples.
+* In PyTorch, the dataset consisted of 30'000 training samples and 10'000 validation samples.
+* In Keras, the dataset consisted of 30'000 training samples, 9'500 validation samples and 500 test samples.
+
+The cross-entropy loss function was used as criterion for training, and the model was trained in batches of 100 images using the Adam optimiser (an extended version of stochastic gradient descent).
+Over many iterations, the model improves by minimising the loss function (see Figure 2).
 
 ![image](https://github.com/mnirkko/deeplearning/assets/6942556/d9d933cc-0057-48af-aba7-7f0dc3357d1c)
 
-**Figure 2** -- Loss function of pre-trained ResNet18 model used in PyTorch. Cross-entropy loss was used as criterion. 
+**Figure 2** -- Loss function of pre-trained ResNet18 model used in PyTorch. Cross-entropy loss was used as criterion.
+
+Loading pre-trained image classification models such as ResNet50 and VGG16 allows for speeding up the process.
+A sequential Dense layer is added to the output of the pre-trained models to reduce the number of output parameters to a binary value (positive/negative), which allows us to classify the images.
 
 ![image](https://github.com/mnirkko/deeplearning/assets/6942556/f788018f-8843-4022-b006-07f09fa2e514)
 
 **Figure 3** -- Summary of pre-trained models used in Keras. Left: ResNet50 model. Right: VGG16 model. A Dense layer was added sequentially to reduce the output parameters to 2, corresponding to a binary classification. 
 
+After processing all the batches in the training dataset, the model is evaluated using the validation dataset.
+This allows us to determine the loss and accuracy of the model in a large number of iterations, as the data can be split into batches randomly.
+The entire process can be repeated a given number of times, each of which is known as an epoch.
+In this example, the number of epochs was chosen to be 1.
+Even with pre-trained models, GPU computing is very strongly recommended.
+I achieved this using Google Colab, which reduced the training time of one specific epoch from 3 hours to 2 minutes.
+Finally, one can compare the resulting accuracy of each model to select the best one.
 
 ## Results
 
