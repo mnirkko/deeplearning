@@ -4,7 +4,12 @@ Completed by Martti Nirkko on 23rd August, 2023.
 
 This repository contains all the notebooks and scripts used to complete the final Capstone project of the Coursera module **IBM AI Engineering**.
 
-> Engage with the transformative field of AI engineering through an insightful six-course program focused on machine learning, deep learning and related tools. Enhance your data science expertise by gaining hands-on experience in building, training, and deploying advanced neural networks using popular ML libraries and platforms.
+> Learners who have completed this 6 course Professional Certificate have a practical understanding of Machine Learning (ML) & Deep Learning (DL). They have technical skills to start a career in AI Engineering, and can:
+> • Implement ML algorithms including Classification, Regression, Clustering, and Dimensional Reduction using scipy & scikitlearn
+> • Perform ML on Big Data and deploy ML Algorithms and Pipelines on Apache Spark
+> • Demonstrate understanding of Deep Learning models such as autoencoders, restricted Boltzmann machines, convolutional networks, recursive neural networks, and recurrent networks
+> • Build deep learning models and neural networks using Keras, PyTorch and Tensorflow libraries
+> • Demonstrate ability to present and communicate outcomes of deep learning projects
 
 **Topics covered**: Machine Learning, Neural Networks, Deep Learning, Computer Vision, Image Processing, Scaling
 
