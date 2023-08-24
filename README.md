@@ -46,10 +46,11 @@ Images are resized to 224x224 pixels to input them into the pre-trained models.
 * In PyTorch, the dataset consisted of 30'000 training samples and 10'000 validation samples.
 * In Keras, the dataset consisted of 30'000 training samples, 9'500 validation samples and 500 test samples.
 
-The cross-entropy loss function was used as criterion for training, and the model was trained in batches of 100 images using the Adam optimiser (an extended version of stochastic gradient descent).
+The cross-entropy loss function was used as criterion for training, and the ResNet18 model was trained in batches of 100 images using the Adam optimiser (an extended version of stochastic gradient descent).
+This process is very slow, and took around 3 hours to complete.
 Over many iterations, the model improves by minimising the loss function (see Figure 2).
 
-![image](https://github.com/mnirkko/deeplearning/assets/6942556/d9d933cc-0057-48af-aba7-7f0dc3357d1c)
+![image](https://github.com/mnirkko/deeplearning/assets/6942556/ce184df5-3a2b-40f8-84c2-fd86541525ab)
 
 **Figure 2** -- Loss function of pre-trained ResNet18 model used in PyTorch. Cross-entropy loss was used as criterion.
 
@@ -71,8 +72,8 @@ Finally, one can compare the resulting accuracy of each model to select the best
 ## Results
 
 The following results were obtained:
-* Using the **ResNet18** model in PyTorch, the achieved accuracy  was **99.4%**.
-* Using the **VGG16** model in Keras, the achieved accuracy  was **99.8%**.
+* Using the **ResNet18** model in PyTorch, the achieved accuracy  was **99.6%**.
+* Using the **VGG16** model in Keras, the achieved accuracy  was **99.6%**.
 * Using the **ResNet50** model in Keras, the achieved accuracy  was **100%**.
 
 Given the relatively simple nature of the problem (a crack should be clearly visible in a close-up image of concrete), the trained models performed very well on the validation datasets.
