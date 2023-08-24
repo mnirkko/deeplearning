@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>DL0321EN-4-1-Comparing-Models-py-v1.0</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>DL0321EN_4_1_Comparing_Models_py_v1_0</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7523,7 +7523,7 @@ Requirement already satisfied: jupyterlab-widgets&gt;=1.0.0 in /usr/local/lib/py
 Requirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.10/dist-packages (from ipython-&gt;skillsnetwork) (67.7.2)
 Collecting jedi&gt;=0.16 (from ipython-&gt;skillsnetwork)
   Downloading jedi-0.19.0-py2.py3-none-any.whl (1.6 MB)
-     <span class="ansi-black-intense-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">1.6/1.6 MB</span> <span class="ansi-red-fg">9.4 MB/s</span> eta <span class="ansi-cyan-fg">0:00:00</span>
+     <span class="ansi-black-intense-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">1.6/1.6 MB</span> <span class="ansi-red-fg">7.4 MB/s</span> eta <span class="ansi-cyan-fg">0:00:00</span>
 Requirement already satisfied: decorator in /usr/local/lib/python3.10/dist-packages (from ipython-&gt;skillsnetwork) (4.4.2)
 Requirement already satisfied: pickleshare in /usr/local/lib/python3.10/dist-packages (from ipython-&gt;skillsnetwork) (0.7.5)
 Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from ipython-&gt;skillsnetwork) (3.0.39)
@@ -7697,7 +7697,7 @@ Successfully installed jedi-0.19.0 skillsnetwork-0.20.6
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>['test', 'train', 'valid', '.DS_Store']</pre>
+<pre>['test', 'train', '.DS_Store', 'valid']</pre>
 </div>
 </div>
 </div>
@@ -7710,27 +7710,6 @@ Successfully installed jedi-0.19.0 skillsnetwork-0.20.6
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>After you unzip the data, you fill find the data has already been divided into a train, validation, and test sets.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a id="item42"></a></p>
 </div>
 </div>
 </div>
@@ -7799,7 +7778,7 @@ Successfully installed jedi-0.19.0 skillsnetwork-0.20.6
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
 <span class="kn">from</span> <span class="nn">keras.applications</span> <span class="kn">import</span> <span class="n">VGG16</span>
-<span class="kn">from</span> <span class="nn">keras.applications.vgg16</span> <span class="kn">import</span> <span class="n">preprocess_input</span>
+<span class="kn">from</span> <span class="nn">keras.applications.vgg16</span> <span class="kn">import</span> <span class="n">preprocess_input</span> <span class="k">as</span> <span class="n">preprocess_vgg16</span>
 </pre></div>
 </div>
 </div>
@@ -7813,7 +7792,8 @@ Successfully installed jedi-0.19.0 skillsnetwork-0.20.6
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">image_resize</span> <span class="o">=</span> <span class="mi">224</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">num_classes</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">image_resize</span> <span class="o">=</span> <span class="mi">224</span>
 
 <span class="n">batch_size_training</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">batch_size_validation</span> <span class="o">=</span> <span class="mi">100</span>
@@ -7830,12 +7810,10 @@ Successfully installed jedi-0.19.0 skillsnetwork-0.20.6
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">data_generator</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
-    <span class="n">preprocessing_function</span> <span class="o">=</span> <span class="n">preprocess_input</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">data_generator_vgg16</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">preprocessing_function</span> <span class="o">=</span> <span class="n">preprocess_vgg16</span><span class="p">)</span>
 
-<span class="n">train_generator</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="s1">'concrete_data_week4/train'</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">image_resize</span><span class="p">,</span> <span class="n">image_resize</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_training</span><span class="p">,</span> <span class="n">class_mode</span><span class="o">=</span><span class="s1">'categorical'</span><span class="p">)</span>
-<span class="n">validation_generator</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="s1">'concrete_data_week4/valid'</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">image_resize</span><span class="p">,</span> <span class="n">image_resize</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_validation</span><span class="p">,</span> <span class="n">class_mode</span><span class="o">=</span><span class="s1">'categorical'</span><span class="p">)</span>
+<span class="n">train_generator_vgg16</span> <span class="o">=</span> <span class="n">data_generator_vgg16</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="s1">'concrete_data_week4/train'</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">image_resize</span><span class="p">,</span> <span class="n">image_resize</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_training</span><span class="p">,</span> <span class="n">class_mode</span><span class="o">=</span><span class="s1">'categorical'</span><span class="p">)</span>
+<span class="n">validation_generator_vgg16</span> <span class="o">=</span> <span class="n">data_generator_vgg16</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="s1">'concrete_data_week4/valid'</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">image_resize</span><span class="p">,</span> <span class="n">image_resize</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_validation</span><span class="p">,</span> <span class="n">class_mode</span><span class="o">=</span><span class="s1">'categorical'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7863,10 +7841,9 @@ Found 9501 images belonging to 2 classes.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">num_classes</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">VGG16</span><span class="p">(</span><span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pooling</span><span class="o">=</span><span class="s1">'avg'</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">'imagenet'</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">))</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">model_vgg16</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model_vgg16</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">VGG16</span><span class="p">(</span><span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pooling</span><span class="o">=</span><span class="s1">'avg'</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">'imagenet'</span><span class="p">))</span>
+<span class="n">model_vgg16</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7894,7 +7871,7 @@ Found 9501 images belonging to 2 classes.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">layers</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">model_vgg16</span><span class="o">.</span><span class="n">layers</span>
 </pre></div>
 </div>
 </div>
@@ -7907,8 +7884,8 @@ Found 9501 images belonging to 2 classes.
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>[&lt;keras.engine.functional.Functional at 0x7febd9d18910&gt;,
- &lt;keras.layers.core.dense.Dense at 0x7febd9d316c0&gt;]</pre>
+<pre>[&lt;keras.engine.functional.Functional at 0x7d407bf0b670&gt;,
+ &lt;keras.layers.core.dense.Dense at 0x7d407bf48130&gt;]</pre>
 </div>
 </div>
 </div>
@@ -7921,7 +7898,7 @@ Found 9501 images belonging to 2 classes.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">layers</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">model_vgg16</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">layers</span>
 </pre></div>
 </div>
 </div>
@@ -7934,26 +7911,26 @@ Found 9501 images belonging to 2 classes.
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>[&lt;keras.engine.input_layer.InputLayer at 0x7febdac1ca60&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd984ef50&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd984f6a0&gt;,
- &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7febda1287f0&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd984fbe0&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febda12a170&gt;,
- &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7febda12b1f0&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febda12add0&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febda12bcd0&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febda12aa70&gt;,
- &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7febd9cfded0&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd9cfe410&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd9cff100&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd9cfe680&gt;,
- &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7febd9d18730&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd9cfe290&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd9cfe500&gt;,
- &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7febd9d18cd0&gt;,
- &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7febd9d1b0d0&gt;,
- &lt;keras.layers.pooling.global_average_pooling2d.GlobalAveragePooling2D at 0x7febd9d1bd60&gt;]</pre>
+<pre>[&lt;keras.engine.input_layer.InputLayer at 0x7d4089047790&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d40880ee260&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d40880ee9b0&gt;,
+ &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7d40880ef9a0&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d40880eeef0&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d40880eff10&gt;,
+ &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7d4083d68910&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d6a710&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d6b400&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d6a8c0&gt;,
+ &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7d4083d84a90&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d6a890&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d6ab60&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d86710&gt;,
+ &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7d4083d877c0&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d87280&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d85900&gt;,
+ &lt;keras.layers.convolutional.conv2d.Conv2D at 0x7d4083d86a40&gt;,
+ &lt;keras.layers.pooling.max_pooling2d.MaxPooling2D at 0x7d407bf0a2c0&gt;,
+ &lt;keras.layers.pooling.global_average_pooling2d.GlobalAveragePooling2D at 0x7d407bf0a740&gt;]</pre>
 </div>
 </div>
 </div>
@@ -7966,8 +7943,8 @@ Found 9501 images belonging to 2 classes.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">model_vgg16</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">model_vgg16</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8006,7 +7983,7 @@ _________________________________________________________________
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">model_vgg16</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -8020,8 +7997,8 @@ _________________________________________________________________
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">steps_per_epoch_training</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_generator</span><span class="p">)</span>
-<span class="n">steps_per_epoch_validation</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">validation_generator</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">steps_per_epoch_training</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_generator_vgg16</span><span class="p">)</span>
+<span class="n">steps_per_epoch_validation</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">validation_generator_vgg16</span><span class="p">)</span>
 <span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
@@ -8036,11 +8013,11 @@ _________________________________________________________________
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fit_history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span>
-    <span class="n">train_generator</span><span class="p">,</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">fit_history</span> <span class="o">=</span> <span class="n">model_vgg16</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">train_generator_vgg16</span><span class="p">,</span>
     <span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">steps_per_epoch_training</span><span class="p">,</span>
     <span class="n">epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span>
-    <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_generator</span><span class="p">,</span>
+    <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_generator_vgg16</span><span class="p">,</span>
     <span class="n">validation_steps</span><span class="o">=</span><span class="n">steps_per_epoch_validation</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span>
@@ -8055,19 +8032,11 @@ _________________________________________________________________
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>&lt;ipython-input-13-172e67583a70&gt;:1: UserWarning: `Model.fit_generator` is deprecated and will be removed in a future version. Please use `Model.fit`, which supports generators.
-  fit_history = model.fit_generator(
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Epoch 1/2
-301/301 [==============================] - 185s 542ms/step - loss: 0.1342 - accuracy: 0.9516 - val_loss: 0.0284 - val_accuracy: 0.9932
+301/301 [==============================] - 233s 703ms/step - loss: 0.0974 - accuracy: 0.9644 - val_loss: 0.0247 - val_accuracy: 0.9938
 Epoch 2/2
-301/301 [==============================] - 164s 545ms/step - loss: 0.0213 - accuracy: 0.9951 - val_loss: 0.0162 - val_accuracy: 0.9964
+301/301 [==============================] - 175s 581ms/step - loss: 0.0188 - accuracy: 0.9958 - val_loss: 0.0149 - val_accuracy: 0.9953
 </pre>
 </div>
 </div>
@@ -8081,30 +8050,9 @@ Epoch 2/2
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'classifier_vgg_model.h5'</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">model_vgg16</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'classifier_vgg_model.h5'</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a id="item43"></a></p>
 </div>
 </div>
 </div>
@@ -8158,8 +8106,8 @@ Epoch 2/2
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">loadtxt</span>
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
-<span class="n">model_resnet</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">'classifier_resnet_model.h5'</span><span class="p">)</span>
-<span class="n">model_resnet</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">model_resnet50</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">'classifier_resnet_model.h5'</span><span class="p">)</span>
+<span class="n">model_resnet50</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8198,7 +8146,13 @@ _________________________________________________________________
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">test_generator</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="s1">'concrete_data_week4/test'</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">image_resize</span><span class="p">,</span> <span class="n">image_resize</span><span class="p">),</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">keras.applications</span> <span class="kn">import</span> <span class="n">ResNet50</span>
+<span class="kn">from</span> <span class="nn">keras.applications.resnet</span> <span class="kn">import</span> <span class="n">preprocess_input</span> <span class="k">as</span> <span class="n">preprocess_resnet50</span>
+
+<span class="n">data_generator_resnet50</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">preprocessing_function</span> <span class="o">=</span> <span class="n">preprocess_resnet50</span><span class="p">)</span>
+
+<span class="n">test_generator_resnet50</span> <span class="o">=</span> <span class="n">data_generator_resnet50</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="s1">'concrete_data_week4/test'</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">image_resize</span><span class="p">,</span> <span class="n">image_resize</span><span class="p">),</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">test_generator_vgg16</span> <span class="o">=</span> <span class="n">data_generator_vgg16</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="s1">'concrete_data_week4/test'</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">image_resize</span><span class="p">,</span> <span class="n">image_resize</span><span class="p">),</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8212,6 +8166,7 @@ _________________________________________________________________
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Found 500 images belonging to 2 classes.
+Found 500 images belonging to 2 classes.
 </pre>
 </div>
 </div>
@@ -8225,38 +8180,8 @@ _________________________________________________________________
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">performance_resnet</span> <span class="o">=</span> <span class="n">model_resnet</span><span class="o">.</span><span class="n">evaluate_generator</span><span class="p">(</span><span class="n">test_generator</span><span class="p">)</span>
-<span class="n">performance_vgg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate_generator</span><span class="p">(</span><span class="n">test_generator</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>&lt;ipython-input-30-9ff1290f7f54&gt;:1: UserWarning: `Model.evaluate_generator` is deprecated and will be removed in a future version. Please use `Model.evaluate`, which supports generators.
-  performance_resnet = model_resnet.evaluate_generator(test_generator)
-&lt;ipython-input-30-9ff1290f7f54&gt;:2: UserWarning: `Model.evaluate_generator` is deprecated and will be removed in a future version. Please use `Model.evaluate`, which supports generators.
-  performance_vgg = model.evaluate_generator(test_generator)
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">performance_vgg</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">performance_resnet50</span> <span class="o">=</span> <span class="n">model_resnet50</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_generator_resnet50</span><span class="p">)</span>
+<span class="n">performance_vgg16</span> <span class="o">=</span> <span class="n">model_vgg16</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_generator_vgg16</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8269,7 +8194,8 @@ _________________________________________________________________
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[0.014160207472741604, 0.9980000257492065]
+<pre>16/16 [==============================] - 5s 165ms/step - loss: 0.0022 - accuracy: 1.0000
+16/16 [==============================] - 10s 325ms/step - loss: 0.0115 - accuracy: 0.9960
 </pre>
 </div>
 </div>
@@ -8283,7 +8209,9 @@ _________________________________________________________________
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">performance_resnet</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Performance of VGG16 model:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- Loss:"</span><span class="p">,</span> <span class="n">performance_vgg16</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- Accuracy:"</span><span class="p">,</span> <span class="n">performance_vgg16</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -8296,7 +8224,40 @@ _________________________________________________________________
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[0.00217888574115932, 1.0]
+<pre>Performance of VGG16 model:
+- Loss: 0.011533571407198906
+- Accuracy: 0.9959999918937683
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Performance of ResNet50 model:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- Loss:"</span><span class="p">,</span> <span class="n">performance_resnet50</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- Accuracy:"</span><span class="p">,</span> <span class="n">performance_resnet50</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Performance of ResNet50 model:
+- Loss: 0.0021788817830383778
+- Accuracy: 1.0
 </pre>
 </div>
 </div>
@@ -8356,50 +8317,10 @@ _________________________________________________________________
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model_resnet</span><span class="o">.</span><span class="n">predict_generator</span><span class="p">(</span><span class="n">test_generator</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>&lt;ipython-input-33-42a43880d3b4&gt;:1: UserWarning: `Model.predict_generator` is deprecated and will be removed in a future version. Please use `Model.predict`, which supports generators.
-  predictions = model_resnet.predict_generator(test_generator)
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">yhat</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">'Negative'</span><span class="p">)</span> <span class="k">if</span> <span class="n">yhat</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="nb">print</span><span class="p">(</span><span class="s1">'Positive'</span><span class="p">)</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">predictions_vgg16</span> <span class="o">=</span> <span class="n">model_vgg16</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_generator_vgg16</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">predictions_vgg16</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">yhat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Negative"</span><span class="p">)</span> <span class="k">if</span> <span class="n">pred</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="nb">print</span><span class="p">(</span><span class="s2">"Positive"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8412,7 +8333,8 @@ _________________________________________________________________
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Negative
+<pre>16/16 [==============================] - 2s 140ms/step
+Negative
 Negative
 Negative
 Negative
@@ -8422,7 +8344,7 @@ Negative
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8430,19 +8352,30 @@ Negative
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># It seems like the output array is sorted!</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">predictions_resnet50</span> <span class="o">=</span> <span class="n">model_resnet50</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_generator_resnet50</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">predictions_resnet50</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">yhat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Negative"</span><span class="p">)</span> <span class="k">if</span> <span class="n">pred</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="nb">print</span><span class="p">(</span><span class="s2">"Positive"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>16/16 [==============================] - 2s 114ms/step
+Negative
+Negative
+Negative
+Negative
+Negative
+</pre>
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 </div>
 </div>
 </div>
